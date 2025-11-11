@@ -18,6 +18,13 @@ namespace RunthingsJsfApplyButtonScrollToTop;
  */
 class JsfApplyButtonScrollToTop {
 	/**
+	 * Track if any widget has scroll-to-top enabled
+	 *
+	 * @var bool
+	 */
+	private $should_enqueue_script = false;
+
+	/**
 	 * Constructor
 	 */
 	public function __construct() {
@@ -45,10 +52,10 @@ class JsfApplyButtonScrollToTop {
 			1
 		);
 
-		// Output script in footer
+		// Enqueue script in footer if needed
 		add_action(
-			'wp_footer',
-			[ $this, 'output_scroll_to_top_script' ],
+			'wp_enqueue_scripts',
+			[ $this, 'enqueue_scripts' ],
 			99
 		);
 	}
@@ -85,7 +92,7 @@ class JsfApplyButtonScrollToTop {
 	}
 
 	/**
-	 * Check widget settings and log the switcher value
+	 * Check widget settings and mark if script should be enqueued
 	 *
 	 * @param \Elementor\Element_Base $element The Elementor element.
 	 */
@@ -98,45 +105,28 @@ class JsfApplyButtonScrollToTop {
 		$settings = $element->get_settings();
 		$scroll_to_top = isset( $settings['scroll_to_top'] ) ? $settings['scroll_to_top'] : 'no';
 
-		error_log( '[JsfApplyButtonScrollToTop] Widget ID: ' . $element->get_id() . ' | scroll_to_top setting: ' . $scroll_to_top );
+		// If any widget has scroll-to-top enabled, mark for script enqueue
+		if ( 'yes' === $scroll_to_top ) {
+			$this->should_enqueue_script = true;
+		}
 	}
 
 	/**
-	 * Output scroll-to-top script in footer
+	 * Enqueue scripts if needed
 	 */
-	public function output_scroll_to_top_script() {
-		// TEMPORARY: Always output the script for now
-		// TODO: Remove this and implement proper setting check
-		error_log( '[JsfApplyButtonScrollToTop] Outputting script in footer (temporary - always enabled)' );
-		echo '<script>' . $this->get_scroll_to_top_script() . '</script>';
-	}
+	public function enqueue_scripts() {
+		// Only enqueue if at least one widget has scroll-to-top enabled
+		if ( ! $this->should_enqueue_script ) {
+			return;
+		}
 
-	/**
-	 * Get the scroll-to-top JavaScript code
-	 *
-	 * @return string The JavaScript code.
-	 */
-	private function get_scroll_to_top_script() {
-		return <<<'JS'
-(function() {
-	console.log('[JsfApplyButtonScrollToTop] Script loaded');
-
-	// Find all apply buttons
-	var buttons = document.querySelectorAll('.apply-filters__button');
-	console.log('[JsfApplyButtonScrollToTop] Found ' + buttons.length + ' apply buttons');
-
-	buttons.forEach(function(btn) {
-		console.log('[JsfApplyButtonScrollToTop] Adding click handler to button');
-		btn.addEventListener('click', function() {
-			console.log('[JsfApplyButtonScrollToTop] Apply button clicked, scrolling to top');
-			window.scrollTo({
-				top: 0,
-				behavior: 'smooth'
-			});
-		});
-	});
-})();
-JS;
+		wp_enqueue_script(
+			'runthings-jsf-scroll-to-top',
+			RUNTHINGS_JSF_SCROLL_PLUGIN_URL . 'assets/js/scroll-to-top.js',
+			[],
+			RUNTHINGS_JSF_SCROLL_VERSION,
+			true
+		);
 	}
 }
 
