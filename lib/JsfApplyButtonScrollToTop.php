@@ -62,7 +62,7 @@ class JsfApplyButtonScrollToTop {
 		$element->add_control(
 			'runthings_scroll_to_top',
 			[
-				'label' => __( 'Scroll to Top on Apply', 'runthings-jsf-apply-button-scroll-to-top' ),
+				'label' => __( 'Scroll to top on apply', 'runthings-jsf-apply-button-scroll-to-top' ),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
 				'default' => 'no',
 				'render_type' => 'template',
@@ -72,14 +72,14 @@ class JsfApplyButtonScrollToTop {
 		$element->add_control(
 			'runthings_scroll_mode',
 			[
-				'label' => __( 'Scroll Mode', 'runthings-jsf-apply-button-scroll-to-top' ),
+				'label' => __( 'Scroll mode', 'runthings-jsf-apply-button-scroll-to-top' ),
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'default' => 'auto',
 				'options' => [
-					'auto' => __( 'Auto (Query ID if available, window top if not)', 'runthings-jsf-apply-button-scroll-to-top' ),
-					'window' => __( 'Window Top', 'runthings-jsf-apply-button-scroll-to-top' ),
-					'query_id' => __( 'Query ID Fragment', 'runthings-jsf-apply-button-scroll-to-top' ),
-					'custom' => __( 'Custom Target ID', 'runthings-jsf-apply-button-scroll-to-top' ),
+					'auto' => __( 'Auto detect', 'runthings-jsf-apply-button-scroll-to-top' ),
+					'window' => __( 'Window top', 'runthings-jsf-apply-button-scroll-to-top' ),
+					'query_id' => __( 'Query ID', 'runthings-jsf-apply-button-scroll-to-top' ),
+					'custom' => __( 'Custom target ID', 'runthings-jsf-apply-button-scroll-to-top' ),
 				],
 				'condition' => [
 					'runthings_scroll_to_top' => 'yes',
@@ -90,7 +90,7 @@ class JsfApplyButtonScrollToTop {
 		$element->add_control(
 			'runthings_scroll_target_id',
 			[
-				'label' => __( 'Custom Target ID', 'runthings-jsf-apply-button-scroll-to-top' ),
+				'label' => __( 'Custom target ID', 'runthings-jsf-apply-button-scroll-to-top' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
 				'placeholder' => __( 'e.g., results-section', 'runthings-jsf-apply-button-scroll-to-top' ),
 				'description' => __( 'Enter a fragment ID to scroll to (without #).', 'runthings-jsf-apply-button-scroll-to-top' ),
