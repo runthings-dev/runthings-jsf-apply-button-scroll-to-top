@@ -5,10 +5,10 @@
  *
  * Initializes the plugin and checks for required dependencies.
  *
- * @package RunthingsJsfScrollToTop
+ * @package RunthingsJsfApplyButtonScrollToTop
  */
 
-namespace RunthingsJsfScrollToTop;
+namespace RunthingsJsfApplyButtonScrollToTop;
 
 /**
  * Class Plugin
@@ -53,8 +53,8 @@ class Plugin {
 		}
 
 		// Load the main feature class
-		require_once RUNTHINGS_JSF_SCROLL_PLUGIN_DIR . 'lib/JetSmartFiltersScrollToTop.php';
-		new JetSmartFiltersScrollToTop();
+		require_once RUNTHINGS_JSF_SCROLL_PLUGIN_DIR . 'lib/JsfApplyButtonScrollToTop.php';
+		new JsfApplyButtonScrollToTop();
 	}
 
 	/**

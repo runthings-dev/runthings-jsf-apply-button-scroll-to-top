@@ -6,17 +6,17 @@
  * Adds a control to the JetSmartFilters apply button widget that enables
  * smooth scrolling to the top of the page when the apply button is clicked.
  *
- * @package RunthingsJsfScrollToTop
+ * @package RunthingsJsfApplyButtonScrollToTop
  */
 
-namespace RunthingsJsfScrollToTop;
+namespace RunthingsJsfApplyButtonScrollToTop;
 
 /**
- * Class JetSmartFiltersScrollToTop
+ * Class JsfApplyButtonScrollToTop
  *
  * Adds scroll-to-top functionality to JetSmartFilters apply button.
  */
-class JetSmartFiltersScrollToTop {
+class JsfApplyButtonScrollToTop {
 	/**
 	 * Constructor
 	 */
@@ -98,7 +98,7 @@ class JetSmartFiltersScrollToTop {
 		$settings = $element->get_settings();
 		$scroll_to_top = isset( $settings['scroll_to_top'] ) ? $settings['scroll_to_top'] : 'no';
 
-		error_log( '[JetSmartFiltersScrollToTop] Widget ID: ' . $element->get_id() . ' | scroll_to_top setting: ' . $scroll_to_top );
+		error_log( '[JsfApplyButtonScrollToTop] Widget ID: ' . $element->get_id() . ' | scroll_to_top setting: ' . $scroll_to_top );
 	}
 
 	/**
@@ -107,7 +107,7 @@ class JetSmartFiltersScrollToTop {
 	public function output_scroll_to_top_script() {
 		// TEMPORARY: Always output the script for now
 		// TODO: Remove this and implement proper setting check
-		error_log( '[JetSmartFiltersScrollToTop] Outputting script in footer (temporary - always enabled)' );
+		error_log( '[JsfApplyButtonScrollToTop] Outputting script in footer (temporary - always enabled)' );
 		echo '<script>' . $this->get_scroll_to_top_script() . '</script>';
 	}
 
@@ -119,16 +119,16 @@ class JetSmartFiltersScrollToTop {
 	private function get_scroll_to_top_script() {
 		return <<<'JS'
 (function() {
-	console.log('[JetSmartFiltersScrollToTop] Script loaded');
+	console.log('[JsfApplyButtonScrollToTop] Script loaded');
 
 	// Find all apply buttons
 	var buttons = document.querySelectorAll('.apply-filters__button');
-	console.log('[JetSmartFiltersScrollToTop] Found ' + buttons.length + ' apply buttons');
+	console.log('[JsfApplyButtonScrollToTop] Found ' + buttons.length + ' apply buttons');
 
 	buttons.forEach(function(btn) {
-		console.log('[JetSmartFiltersScrollToTop] Adding click handler to button');
+		console.log('[JsfApplyButtonScrollToTop] Adding click handler to button');
 		btn.addEventListener('click', function() {
-			console.log('[JetSmartFiltersScrollToTop] Apply button clicked, scrolling to top');
+			console.log('[JsfApplyButtonScrollToTop] Apply button clicked, scrolling to top');
 			window.scrollTo({
 				top: 0,
 				behavior: 'smooth'

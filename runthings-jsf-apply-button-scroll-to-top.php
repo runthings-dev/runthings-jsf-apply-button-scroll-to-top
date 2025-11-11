@@ -29,7 +29,7 @@ define('RUNTHINGS_JSF_SCROLL_PLUGIN_BASENAME', plugin_basename(__FILE__));
 // Initialize the plugin
 function runthings_jsf_scroll_init() {
     require_once RUNTHINGS_JSF_SCROLL_PLUGIN_DIR . 'lib/Plugin.php';
-    return \RunthingsJsfScrollToTop\Plugin::instance();
+    return \RunthingsJsfApplyButtonScrollToTop\Plugin::instance();
 }
 
 // Hook into WordPress
