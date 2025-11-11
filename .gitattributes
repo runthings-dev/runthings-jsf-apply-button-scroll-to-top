@@ -1,0 +1,6 @@
+# Mark minified JS as generated for GitHub
+assets/js/*.min.js linguist-generated=true
+
+# Mark translation template as generated
+languages/*.pot linguist-generated=true
+
