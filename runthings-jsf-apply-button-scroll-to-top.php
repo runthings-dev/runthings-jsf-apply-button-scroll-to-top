@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name: JSF Apply Button Scroll to Top
+ * Plugin Name: Apply Button Scroll to Top for JetSmartFilters
  * Plugin URI: https://runthings.dev
  * Description: Adds scroll-to-top functionality to JetSmartFilters apply button widget
  * Version: 0.1.0
