@@ -4,7 +4,7 @@
  * Plugin Name: Apply Button Scroll to Top for JetSmartFilters
  * Plugin URI: https://runthings.dev
  * Description: Adds scroll-to-top functionality to JetSmartFilters apply button widget
- * Version: 0.1.0
+ * Version: 0.2.0
  * Author: runthingsdev
  * Author URI: https://runthings.dev
  * Requires PHP: 8.0
@@ -21,7 +21,7 @@ if (!defined('WPINC')) {
 }
 
 // Define plugin constants
-define('RUNTHINGS_JSF_AB_SCROLL_VERSION', '0.1.0');
+define('RUNTHINGS_JSF_AB_SCROLL_VERSION', '0.2.0');
 define('RUNTHINGS_JSF_AB_SCROLL_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('RUNTHINGS_JSF_AB_SCROLL_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('RUNTHINGS_JSF_AB_SCROLL_PLUGIN_BASENAME', plugin_basename(__FILE__));
