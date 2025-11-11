@@ -6,10 +6,13 @@ tests/
 build/
 .distignore
 .gitignore
+.gitattributes
 
 # Ignore configuration files
 *.yml
 *.lock
+package.json
+package-lock.json
 
 # Ignore build scripts and macOS file system files
 /bin/

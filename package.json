@@ -1,0 +1,16 @@
+{
+  "name": "runthings-jsf-apply-button-scroll-to-top",
+  "version": "0.1.0",
+  "description": "Adds scroll-to-top functionality to JetSmartFilters apply button widget",
+  "scripts": {
+    "build": "npm run minify",
+    "minify": "terser assets/js/scroll-to-top.js -o assets/js/scroll-to-top.min.js --compress --mangle --comments false --source-map"
+  },
+  "devDependencies": {
+    "terser": "^5.36.0"
+  },
+  "author": "runthingsdev",
+  "license": "GPL-3.0-or-later",
+  "private": true
+}
+
