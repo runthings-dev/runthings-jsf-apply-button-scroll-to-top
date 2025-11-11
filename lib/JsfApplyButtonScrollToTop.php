@@ -68,7 +68,7 @@ class JsfApplyButtonScrollToTop {
 	 */
 	public function add_controls( $element, $args ) {
 		$element->add_control(
-			'scroll_to_top',
+			'runthings_scroll_to_top',
 			[
 				'label' => __( 'Scroll to Top on Apply', 'runthings-jsf-apply-button-scroll-to-top' ),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
@@ -78,14 +78,14 @@ class JsfApplyButtonScrollToTop {
 		);
 
 		$element->add_control(
-			'scroll_target_id',
+			'runthings_scroll_target_id',
 			[
 				'label' => __( 'Scroll Target ID', 'runthings-jsf-apply-button-scroll-to-top' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
 				'placeholder' => __( 'e.g., results-section', 'runthings-jsf-apply-button-scroll-to-top' ),
 				'description' => __( 'Optional: Enter a fragment ID to scroll to (without #). Defaults to top of window if left blank.', 'runthings-jsf-apply-button-scroll-to-top' ),
 				'condition' => [
-					'scroll_to_top' => 'yes',
+					'runthings_scroll_to_top' => 'yes',
 				],
 			]
 		);
@@ -103,7 +103,7 @@ class JsfApplyButtonScrollToTop {
 		}
 
 		$settings = $element->get_settings();
-		$scroll_to_top = isset( $settings['scroll_to_top'] ) ? $settings['scroll_to_top'] : 'no';
+		$scroll_to_top = isset( $settings['runthings_scroll_to_top'] ) ? $settings['runthings_scroll_to_top'] : 'no';
 
 		// If any widget has scroll-to-top enabled, mark for script enqueue
 		if ( 'yes' === $scroll_to_top ) {
