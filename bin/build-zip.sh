@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # Version: 2.1.1
-# Build script for runthings-jsf-apply-button-scroll-to-top plugin
 
 PLUGIN_DIR="$(pwd)"
 PLUGINSLUG="$(basename "$PLUGIN_DIR")"
