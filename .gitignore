@@ -2,10 +2,6 @@
 /vendor/
 composer.lock
 
-# Generated/minified assets
-assets/js/*.min.js
-assets/js/*.min.js.map
-
 # Node.js
 /node_modules/
 package-lock.json
