@@ -106,9 +106,11 @@ class JsfApplyButtonScrollToTop {
 	 * Register scripts
 	 */
 	public function register_scripts() {
+		$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
+
 		wp_register_script(
 			'runthings-jsf-ab-scroll-to-top',
-			RUNTHINGS_JSF_AB_SCROLL_PLUGIN_URL . 'assets/js/scroll-to-top.js',
+			RUNTHINGS_JSF_AB_SCROLL_PLUGIN_URL . "assets/js/scroll-to-top{$suffix}.js",
 			[],
 			RUNTHINGS_JSF_AB_SCROLL_VERSION,
 			true
