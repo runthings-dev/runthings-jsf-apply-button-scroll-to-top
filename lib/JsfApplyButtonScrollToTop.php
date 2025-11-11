@@ -18,13 +18,6 @@ namespace RunthingsJsfApplyButtonScrollToTop;
  */
 class JsfApplyButtonScrollToTop {
 	/**
-	 * Track if any widget has scroll-to-top enabled
-	 *
-	 * @var bool
-	 */
-	private $should_enqueue_script = false;
-
-	/**
 	 * Constructor
 	 */
 	public function __construct() {
@@ -44,19 +37,18 @@ class JsfApplyButtonScrollToTop {
 			2
 		);
 
-		// Hook into widget render to check settings
+		// Register script
+		add_action(
+			'wp_enqueue_scripts',
+			[ $this, 'register_scripts' ]
+		);
+
+		// Hook into widget render to check settings and add script dependency
 		add_action(
 			'elementor/frontend/widget/before_render',
 			[ $this, 'check_widget_settings' ],
 			10,
 			1
-		);
-
-		// Enqueue script in footer if needed
-		add_action(
-			'wp_enqueue_scripts',
-			[ $this, 'enqueue_scripts' ],
-			99
 		);
 	}
 
@@ -78,21 +70,53 @@ class JsfApplyButtonScrollToTop {
 		);
 
 		$element->add_control(
-			'runthings_scroll_target_id',
+			'runthings_scroll_mode',
 			[
-				'label' => __( 'Scroll Target ID', 'runthings-jsf-apply-button-scroll-to-top' ),
-				'type' => \Elementor\Controls_Manager::TEXT,
-				'placeholder' => __( 'e.g., results-section', 'runthings-jsf-apply-button-scroll-to-top' ),
-				'description' => __( 'Optional: Enter a fragment ID to scroll to (without #). Defaults to top of window if left blank.', 'runthings-jsf-apply-button-scroll-to-top' ),
+				'label' => __( 'Scroll Mode', 'runthings-jsf-apply-button-scroll-to-top' ),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'default' => 'auto',
+				'options' => [
+					'auto' => __( 'Auto (Query ID if available, window top if not)', 'runthings-jsf-apply-button-scroll-to-top' ),
+					'window' => __( 'Window Top', 'runthings-jsf-apply-button-scroll-to-top' ),
+					'query_id' => __( 'Query ID Fragment', 'runthings-jsf-apply-button-scroll-to-top' ),
+					'custom' => __( 'Custom Target ID', 'runthings-jsf-apply-button-scroll-to-top' ),
+				],
 				'condition' => [
 					'runthings_scroll_to_top' => 'yes',
+				],
+			]
+		);
+
+		$element->add_control(
+			'runthings_scroll_target_id',
+			[
+				'label' => __( 'Custom Target ID', 'runthings-jsf-apply-button-scroll-to-top' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'placeholder' => __( 'e.g., results-section', 'runthings-jsf-apply-button-scroll-to-top' ),
+				'description' => __( 'Enter a fragment ID to scroll to (without #).', 'runthings-jsf-apply-button-scroll-to-top' ),
+				'condition' => [
+					'runthings_scroll_to_top' => 'yes',
+					'runthings_scroll_mode' => 'custom',
 				],
 			]
 		);
 	}
 
 	/**
-	 * Check widget settings and mark if script should be enqueued
+	 * Register scripts
+	 */
+	public function register_scripts() {
+		wp_register_script(
+			'runthings-jsf-ab-scroll-to-top',
+			RUNTHINGS_JSF_AB_SCROLL_PLUGIN_URL . 'assets/js/scroll-to-top.js',
+			[],
+			RUNTHINGS_JSF_AB_SCROLL_VERSION,
+			true
+		);
+	}
+
+	/**
+	 * Check widget settings and add script dependency if needed
 	 *
 	 * @param \Elementor\Element_Base $element The Elementor element.
 	 */
@@ -105,28 +129,54 @@ class JsfApplyButtonScrollToTop {
 		$settings = $element->get_settings();
 		$scroll_to_top = isset( $settings['runthings_scroll_to_top'] ) ? $settings['runthings_scroll_to_top'] : 'no';
 
-		// If any widget has scroll-to-top enabled, mark for script enqueue
+		// If widget has scroll-to-top enabled, add script dependency
 		if ( 'yes' === $scroll_to_top ) {
-			$this->should_enqueue_script = true;
+			// Add script dependency to this widget instance
+			$element->add_script_depends( 'runthings-jsf-ab-scroll-to-top' );
+
+			$mode = isset( $settings['runthings_scroll_mode'] ) ? $settings['runthings_scroll_mode'] : 'auto';
+			$custom_target = isset( $settings['runthings_scroll_target_id'] ) ? $settings['runthings_scroll_target_id'] : '';
+			$query_id = isset( $settings['query_id'] ) ? $settings['query_id'] : '';
+
+			// Determine single scroll target value
+			$scroll_target = $this->determine_scroll_target( $mode, $custom_target, $query_id );
+
+			// Add data attribute to widget wrapper
+			$element->add_render_attribute( '_wrapper', 'data-runthings-scroll-target', $scroll_target );
 		}
 	}
 
 	/**
-	 * Enqueue scripts if needed
+	 * Determine scroll target based on mode and settings
+	 *
+	 * @param string $mode          Scroll mode (auto, window, query_id, custom).
+	 * @param string $custom_target Custom target ID.
+	 * @param string $query_id      Query ID from JSF settings.
+	 * @return string Scroll target value.
 	 */
-	public function enqueue_scripts() {
-		// Only enqueue if at least one widget has scroll-to-top enabled
-		if ( ! $this->should_enqueue_script ) {
-			return;
-		}
+	private function determine_scroll_target( $mode, $custom_target, $query_id ) {
+		// Strip any leading # from custom target (user might include it despite hint)
+		$custom_target = ltrim( $custom_target, '#' );
 
-		wp_enqueue_script(
-			'runthings-jsf-scroll-to-top',
-			RUNTHINGS_JSF_SCROLL_PLUGIN_URL . 'assets/js/scroll-to-top.js',
-			[],
-			RUNTHINGS_JSF_SCROLL_VERSION,
-			true
-		);
+		switch ( $mode ) {
+			case 'window':
+				// Empty string = explicit window top
+				return '';
+
+			case 'query_id':
+				// Use query_id or fallback to window top
+				return $query_id ? ltrim( $query_id, '#' ) : '';
+
+			case 'custom':
+				// Use custom target or fallback to window top
+				return $custom_target ?: '';
+
+			case 'auto':
+			default:
+				// Special marker for auto-detection
+				// Using # prefix ensures it won't clash with user input (since we strip # from user input)
+				return '#__AUTO__';
+		}
 	}
 }
 
