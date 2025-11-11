@@ -8,7 +8,7 @@
  * Author: runthingsdev
  * Author URI: https://runthings.dev
  * Requires PHP: 8.0
- * Requires at least: 6.0
+ * Requires at least: 6.6
  * Tested up to: 6.8
  * Text Domain: runthings-jsf-apply-button-scroll-to-top
  * Domain Path: /languages
