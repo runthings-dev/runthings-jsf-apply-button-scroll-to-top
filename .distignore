@@ -4,6 +4,7 @@
 node_modules/
 tests/
 build/
+BUILD.md
 .distignore
 .gitignore
 .gitattributes
