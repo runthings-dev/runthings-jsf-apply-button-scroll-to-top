@@ -53,7 +53,7 @@ class Plugin {
 		}
 
 		// Load the main feature class
-		require_once RUNTHINGS_JSF_SCROLL_PLUGIN_DIR . 'lib/JsfApplyButtonScrollToTop.php';
+		require_once RUNTHINGS_JSF_AB_SCROLL_PLUGIN_DIR . 'lib/JsfApplyButtonScrollToTop.php';
 		new JsfApplyButtonScrollToTop();
 	}
 
