@@ -12,8 +12,8 @@
  * Tested up to: 6.8
  * Text Domain: runthings-jsf-apply-button-scroll-to-top
  * Domain Path: /languages
- * License: GPL v2 or later
- * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
+ * License: GPLv3 or later
+ * License URI: http://www.gnu.org/licenses/gpl-3.0.html
  */
 
 if (!defined('WPINC')) {
