@@ -3,7 +3,7 @@ Contributors: runthingsdev
 Tags: jetsmartfilters, elementor, scroll, filters, UX
 Requires at least: 6.6
 Tested up to: 6.8
-Stable tag: 0.1.0
+Stable tag: 1.0.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -70,7 +70,7 @@ You can post ideas or contribute to the project over at the GitHub repository, w
 
 == Changelog ==
 
-= 1.0.0 =
+= 1.0.0 - 19th November 2025 =
 * Initial release
 * Multiple scroll modes: Auto detect, Window top, Query ID, Custom target ID
 * Auto-detection of listing grids based on JetSmartFilters configuration

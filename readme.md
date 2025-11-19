@@ -79,7 +79,7 @@ You can post ideas or contribute to the project over at the GitHub repository, w
 
 ## Changelog
 
-### v1.0.0 - TBD
+### v1.0.0 - 19th November 2025
 
 - Initial release
 - Multiple scroll modes: Auto detect, Window top, Query ID, Custom target ID
