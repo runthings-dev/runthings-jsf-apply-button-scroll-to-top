@@ -93,3 +93,5 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 
 You should have received a copy of the GNU General Public License along with this program; if not, see [http://www.gnu.org/licenses/gpl-3.0.html](http://www.gnu.org/licenses/gpl-3.0.html).
 
+Logo - up by nakals from <a href="https://thenounproject.com/browse/icons/term/up/" target="_blank" title="up Icons">Noun Project</a> (CC BY 3.0)
+
