@@ -79,6 +79,11 @@ You can post ideas or contribute to the project over at the GitHub repository, w
 
 ## Changelog
 
+### v1.1.0 - 21st November 2025
+
+- Enhanced auto-detection to support all JetSmartFilters content providers
+- Added proper sanitization and escaping for user input
+
 ### v1.0.0 - 19th November 2025
 
 - Initial release

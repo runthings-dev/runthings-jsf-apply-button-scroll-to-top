@@ -70,6 +70,10 @@ You can post ideas or contribute to the project over at the GitHub repository, w
 
 == Changelog ==
 
+= 1.1.0 - 21st November 2025 =
+* Enhanced auto-detection to support all JetSmartFilters content providers
+* Added proper sanitization and escaping for user input
+
 = 1.0.0 - 19th November 2025 =
 * Initial release
 * Multiple scroll modes: Auto detect, Window top, Query ID, Custom target ID
@@ -81,6 +85,9 @@ You can post ideas or contribute to the project over at the GitHub repository, w
 * Lightweight implementation with no dependencies beyond required plugins
 
 == Upgrade Notice ==
+
+= 1.1.0 =
+Improves compatibility with all JetSmartFilters content providers.
 
 = 1.0.0 =
 Initial release.
