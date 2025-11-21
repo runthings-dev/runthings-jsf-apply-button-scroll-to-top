@@ -3,7 +3,7 @@ Contributors: runthingsdev
 Tags: jetsmartfilters, elementor, scroll, filters, UX
 Requires at least: 6.6
 Tested up to: 6.8
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
