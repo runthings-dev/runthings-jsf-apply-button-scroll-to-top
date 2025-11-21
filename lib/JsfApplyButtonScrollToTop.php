@@ -158,7 +158,10 @@ class JsfApplyButtonScrollToTop {
 	 */
 	private function determine_scroll_target( $mode, $custom_target, $query_id ) {
 		// Strip any leading # from custom target (user might include it despite hint)
+		$custom_target = sanitize_text_field( $custom_target );
 		$custom_target = ltrim( $custom_target, '#' );
+
+		$query_id = sanitize_text_field( $query_id );
 
 		switch ( $mode ) {
 			case 'window':
