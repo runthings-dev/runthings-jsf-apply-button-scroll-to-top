@@ -95,8 +95,9 @@ class Plugin {
 		}
 
 		$message = sprintf(
-			/* translators: %s: comma-separated list of missing plugins */
-			__('JSF Apply Button Scroll to Top requires the following plugin(s) to be installed and activated: %s', 'runthings-jsf-apply-button-scroll-to-top'),
+			/* translators: 1: plugin name, 2: comma-separated list of missing plugins */
+			__('%1$s requires the following plugin(s) to be installed and activated: %2$s', 'runthings-jsf-apply-button-scroll-to-top'),
+			RUNTHINGS_JSF_AB_SCROLL_PLUGIN_NAME,
 			implode(', ', $missing)
 		);
 

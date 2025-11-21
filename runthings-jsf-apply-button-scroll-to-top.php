@@ -22,6 +22,7 @@ if (!defined('WPINC')) {
 
 // Define plugin constants
 define('RUNTHINGS_JSF_AB_SCROLL_VERSION', '1.0.0');
+define('RUNTHINGS_JSF_AB_SCROLL_PLUGIN_NAME', 'Apply Button Scroll to Top for JetSmartFilters');
 define('RUNTHINGS_JSF_AB_SCROLL_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('RUNTHINGS_JSF_AB_SCROLL_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('RUNTHINGS_JSF_AB_SCROLL_PLUGIN_BASENAME', plugin_basename(__FILE__));
