@@ -144,7 +144,7 @@ class JsfApplyButtonScrollToTop {
 			$scroll_target = $this->determine_scroll_target( $mode, $custom_target, $query_id );
 
 			// Add data attribute to widget wrapper
-			$element->add_render_attribute( '_wrapper', 'data-runthings-scroll-target', $scroll_target );
+			$element->add_render_attribute( '_wrapper', 'data-runthings-scroll-target', esc_attr( $scroll_target ) );
 		}
 	}
 
