@@ -1,78 +1,109 @@
 (function () {
   // Find all apply buttons
-  var buttons = document.querySelectorAll(".apply-filters__button");
+  const buttons = document.querySelectorAll(".apply-filters__button");
 
   /**
-   * Detect auto scroll target using JSF's existing data attributes
+   * Resolve element reference from ID
    *
-   * @param {HTMLElement} applyContainer The .apply-filters container
-   * @return {string|null} Target ID or null for window top
+   * @param {string} elementId Element ID (without #)
+   * @return {HTMLElement|null} Element or null if not found
    */
-  function detectAutoTarget(applyContainer) {
+  function resolveElementById(elementId) {
+    if (!elementId) {
+      return null;
+    }
+    return document.getElementById(elementId);
+  }
+
+  /**
+   * Resolve element reference using JSF selector configuration
+   *
+   * @param {HTMLElement} applyContainer The .apply-filters container with JSF data attributes
+   * @return {HTMLElement|null} Element or null if not found
+   */
+  function resolveElementFromJsfConfig(applyContainer) {
     // Read JSF's existing attributes (already on the DOM)
-    var queryId = applyContainer.dataset.queryId;
-    var contentProvider = applyContainer.dataset.contentProvider;
+    const queryId = applyContainer.dataset.queryId;
+    const contentProvider = applyContainer.dataset.contentProvider;
 
     // Cascade: query_id → provider wrapper → null
 
     // 1. Try query_id first (if not 'default')
     if (queryId && queryId !== "default") {
-      var queryElement = document.getElementById(queryId);
+      const queryElement = document.getElementById(queryId);
       if (queryElement) {
-        return queryId;
+        return queryElement;
       }
     }
 
-    // 2. Try to find provider wrapper by selector
-    var providerSelectors = {
-      "jet-engine": ".jet-listing-grid.jet-listing",
-      "jet-woo-builder": ".jet-woo-builder-products",
-    };
+    // 2. Try to find provider wrapper using JSF's selector configuration
+    if (
+      contentProvider &&
+      window.JetSmartFilterSettings &&
+      window.JetSmartFilterSettings.selectors &&
+      window.JetSmartFilterSettings.selectors[contentProvider]
+    ) {
+      const selectorConfig =
+        window.JetSmartFilterSettings.selectors[contentProvider];
+      const selector = selectorConfig.selector;
 
-    var selector = providerSelectors[contentProvider];
-    if (selector) {
-      var providerElement = document.querySelector(selector);
-      if (providerElement && providerElement.id) {
-        return providerElement.id;
+      if (selector) {
+        const providerElement = document.querySelector(selector);
+        if (providerElement) {
+          return providerElement;
+        }
       }
     }
 
-    // 3. Fallback to window top
+    // 3. Not found
     return null;
   }
 
   /**
-   * Perform scroll to target
+   * Resolve scroll target instruction to element reference
    *
-   * @param {string|null} targetId Target element ID (without #) or null for window top
+   * @param {string} scrollTarget The scroll target instruction from data attribute
+   * @param {HTMLElement} widget The widget wrapper element
+   * @return {HTMLElement|null} Element to scroll to, or null for window top
    */
-  function scrollToTarget(targetId) {
-    // Strip any leading # from targetId (defensive)
-    if (targetId) {
-      targetId = targetId.replace(/^#/, "");
+  function resolveScrollTarget(scrollTarget, widget) {
+    // Auto-detect using JSF configuration
+    if (scrollTarget === "#__AUTO__") {
+      const applyContainer = widget.querySelector(".apply-filters");
+      if (applyContainer) {
+        return resolveElementFromJsfConfig(applyContainer);
+      }
+      return null;
     }
 
-    if (!targetId) {
+    // Specific ID provided
+    if (scrollTarget && scrollTarget !== "") {
+      // Strip any leading # (defensive)
+      const elementId = scrollTarget.replace(/^#/, "");
+      return resolveElementById(elementId);
+    }
+
+    // Empty string or null = window top
+    return null;
+  }
+
+  /**
+   * Scroll to element or window top
+   *
+   * @param {HTMLElement|null} element Element to scroll to, or null for window top
+   */
+  function scrollToElement(element) {
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    } else {
       // Scroll to window top
       window.scrollTo({
         top: 0,
         behavior: "smooth",
       });
-    } else {
-      // Scroll to element with ID
-      var element = document.getElementById(targetId);
-      if (element) {
-        element.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      } else {
-        // Fallback to window top if element not found
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
-      }
     }
   }
 
@@ -80,32 +111,14 @@
   buttons.forEach(function (btn) {
     btn.addEventListener("click", function () {
       // Find the widget wrapper with our data attribute
-      var widget = btn.closest("[data-runthings-scroll-target]");
+      const widget = btn.closest("[data-runthings-scroll-target]");
       if (!widget) {
         return;
       }
 
-      var scrollTarget = widget.dataset.runthingsScrollTarget;
-
-      // Handle auto-detection marker
-      if (scrollTarget === "#__AUTO__") {
-        // Find the .apply-filters container (has JSF's data attributes)
-        var applyContainer = widget.querySelector(".apply-filters");
-        if (applyContainer) {
-          var autoTarget = detectAutoTarget(applyContainer);
-          scrollToTarget(autoTarget);
-        } else {
-          scrollToTarget(null);
-        }
-      }
-      // Handle explicit window top (empty string)
-      else if (scrollTarget === "") {
-        scrollToTarget(null);
-      }
-      // Handle specific target ID
-      else {
-        scrollToTarget(scrollTarget);
-      }
+      const scrollTarget = widget.dataset.runthingsScrollTarget;
+      const targetElement = resolveScrollTarget(scrollTarget, widget);
+      scrollToElement(targetElement);
     });
   });
 })();
