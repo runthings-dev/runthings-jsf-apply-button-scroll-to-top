@@ -79,6 +79,10 @@ You can post ideas or contribute to the project over at the GitHub repository, w
 
 ## Changelog
 
+### v1.1.2 - 16th December 2025
+
+- Bump tested up to 6.9
+
 ### v1.1.1 - 16th December 2025
 
 - Bump tested up to 6.9

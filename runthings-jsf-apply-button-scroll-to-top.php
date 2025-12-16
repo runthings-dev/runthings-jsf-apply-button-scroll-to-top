@@ -4,12 +4,12 @@
  * Plugin Name: Apply Button Scroll to Top for JetSmartFilters
  * Plugin URI: https://runthings.dev/wordpress-plugins/jsf-apply-button-back-to-top/
  * Description: Adds scroll-to-top functionality to JetSmartFilters apply button widget
- * Version: 1.1.1
+ * Version: 1.1.2
  * Author: runthingsdev
  * Author URI: https://runthings.dev
  * Requires PHP: 8.0
  * Requires at least: 6.6
- * Tested up to: 6.8
+ * Tested up to: 6.9
  * Text Domain: runthings-jsf-apply-button-scroll-to-top
  * Domain Path: /languages
  * License: GPLv3 or later
@@ -21,7 +21,7 @@ if (!defined('WPINC')) {
 }
 
 // Define plugin constants
-define('RUNTHINGS_JSF_AB_SCROLL_VERSION', '1.1.1');
+define('RUNTHINGS_JSF_AB_SCROLL_VERSION', '1.1.2');
 define('RUNTHINGS_JSF_AB_SCROLL_PLUGIN_NAME', 'Apply Button Scroll to Top for JetSmartFilters');
 define('RUNTHINGS_JSF_AB_SCROLL_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('RUNTHINGS_JSF_AB_SCROLL_PLUGIN_URL', plugin_dir_url(__FILE__));

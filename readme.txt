@@ -3,7 +3,7 @@ Contributors: runthingsdev
 Tags: jetsmartfilters, elementor, scroll, filters, UX
 Requires at least: 6.6
 Tested up to: 6.9
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -70,6 +70,9 @@ You can post ideas or contribute to the project over at the GitHub repository, w
 
 == Changelog ==
 
+= 1.1.2 - 16th December 2025 =
+* Bump tested up to 6.9
+
 = 1.1.1 - 16th December 2025 =
 * Bump tested up to 6.9
 
@@ -89,11 +92,14 @@ You can post ideas or contribute to the project over at the GitHub repository, w
 
 == Upgrade Notice ==
 
+= 1.1.2 =
+Bump tested up to 6.9
+
+= 1.1.1 =
+Bump tested up to 6.9
+
 = 1.1.0 =
 Improves compatibility with all JetSmartFilters content providers.
-
-= 1.0.0 =
-Initial release.
 
 == License ==
 
