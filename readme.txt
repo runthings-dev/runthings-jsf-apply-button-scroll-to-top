@@ -2,8 +2,8 @@
 Contributors: runthingsdev
 Tags: jetsmartfilters, elementor, scroll, filters, UX
 Requires at least: 6.6
-Tested up to: 6.8
-Stable tag: 1.1.0
+Tested up to: 6.9
+Stable tag: 1.1.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -69,6 +69,9 @@ You can post ideas or contribute to the project over at the GitHub repository, w
 2. Elementor widget controls showing scroll configuration options for custom fragment
 
 == Changelog ==
+
+= 1.1.1 - 16th December 2025 =
+* Bump tested up to 6.9
 
 = 1.1.0 - 21st November 2025 =
 * Enhanced auto-detection to support all JetSmartFilters content providers
