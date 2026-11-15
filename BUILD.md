@@ -3,7 +3,7 @@
 ## Fresh Clone Setup
 
 ```bash
-npm install
+npm ci
 npm run build
 ```
 
@@ -15,13 +15,18 @@ npm run build
 
 ## Release Build
 
-Bump version number in package.json, root plugin file, and define.
+1. `npm run build`
 
-Update readme version number, changelog, upgrade notice, and stable tag.
+2. `rtp-build --changelog` to copy to clipboard
 
-```bash
-npm run build
-./bin/build-zip.sh
-```
+3. Paste changelog prompt into agent and run
 
-**Output:** `build/runthings-jsf-apply-button-scroll-to-top.zip`
+4. Set the release version in:
+
+   - The `Version` plugin header in root file
+   - The define or class var in the root file
+   - The `Stable tag` in `readme.txt`.
+
+   Leave these version changes uncommitted.
+
+5. `rtp-build`

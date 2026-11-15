@@ -72,10 +72,10 @@ You can post ideas or contribute to the project over at the GitHub repository, w
 ## Screenshots
 
 1. Elementor widget controls showing scroll configuration options
-   ![Elementor widget controls showing scroll configuration options](screenshot-1.png)
+   ![Elementor widget controls showing scroll configuration options](.wordpress-org/screenshot-1.png)
 
 2. Elementor widget controls showing scroll configuration options for custom fragment
-   ![Elementor widget controls showing scroll configuration options for custom fragment](screenshot-2.png)
+   ![Elementor widget controls showing scroll configuration options for custom fragment](.wordpress-org/screenshot-2.png)
 
 ## Changelog
 
