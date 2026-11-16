@@ -79,6 +79,10 @@ You can post ideas or contribute to the project over at the GitHub repository, w
 
 ## Changelog
 
+### v1.1.3 - 16th November 2026
+
+- Update WordPress tested-up-to metadata to 7.1.
+
 ### v1.1.2 - 16th December 2025
 
 - Bump tested up to 6.9
